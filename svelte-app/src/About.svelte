@@ -21,5 +21,4 @@
         </ul>
       </div>
     </div>
-<div slot="noauth">Nope.</div>
 </Guard>
