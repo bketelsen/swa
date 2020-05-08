@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 const state = {
-  user: writable(undefined),
+  user: writable(null),
   products: writable([]),
 };
 
@@ -14,7 +14,9 @@ async function getUserInfo() {
   const payload = await response.json();
   const { clientPrincipal } = payload;
   console.log(clientPrincipal);
-  setUser(clientPrincipal);
+  if(clientPrincipal !== null){
+    setUser(clientPrincipal);
+  }
   return clientPrincipal;
 }
 

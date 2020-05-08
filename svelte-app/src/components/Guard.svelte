@@ -10,9 +10,11 @@
 
 
 <div>
-    {#if ($user !== undefined)}
+    {#if ($user !== null)}
 	    <slot name="authenticated">Welcome to the show</slot>
     {:else}
-        <slot name="noauth">Sorry charlie</slot>
+        <slot name="noauth">
+        I bet if you <a href="/.auth/login/github">Login</a> you'd see more here.
+        </slot>
     {/if}
 </div>
