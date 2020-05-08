@@ -4,7 +4,7 @@ module.exports = async function (context, req) {
 
     let connectionString = process.env.StorageConnectionString;
     let tableService = azure.createTableService(connectionString);
-    tableService.queryEntities('pages',null,(error, result, response) => {
+    tableService.queryEntities('pages',null,null, function(error, result) {
       var pages = result.entities;
         if (error) {
           context.res.status(400).json(error);
