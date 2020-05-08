@@ -14,6 +14,7 @@ async function getUserInfo() {
   const payload = await response.json();
   const { clientPrincipal } = payload;
   console.log(clientPrincipal);
+  setUser(clientPrincipal);
   return clientPrincipal;
 }
 
