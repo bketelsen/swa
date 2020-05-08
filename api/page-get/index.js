@@ -16,7 +16,6 @@ module.exports = function (context, req, page) {
       };
     const { resources } = await container.items.query(querySpec).fetchAll()
 
-    debug('Setting up the container...done!')
     if (!resources)
     {
         context.log("Page item not found");
