@@ -1,8 +1,21 @@
 import { writable } from 'svelte/store';
 
 const state = {
+  user: writable(undefined),
   products: writable([]),
 };
+
+const setUser = (user) => {
+  state.user.set(user);
+}
+
+async function getUserInfo() {
+  const response = await fetch("/.auth/me");
+  const payload = await response.json();
+  const { clientPrincipal } = payload;
+  console.log(clientPrincipal);
+  return clientPrincipal;
+}
 
 const getProducts = (products) => {
   state.products.update((old) => products);
@@ -27,4 +40,4 @@ const updateProduct = (product) => {
   });
 };
 
-export { state, addProduct, getProducts, updateProduct, deleteProduct };
+export { state, setUser, getUserInfo, addProduct, getProducts, updateProduct, deleteProduct };
