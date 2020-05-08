@@ -1,16 +1,18 @@
-const data = require('../shared/product-data');
+let azure = require('azure-storage');
 
 module.exports = async function (context, req) {
-  const product = {
-    id: undefined,
-    name: req.body.name,
-    description: req.body.description,
-  };
+    let page = req.body;
+    page.PartitionKey = page.slug;
+    page.RowKey = page.slug;
 
-  try {
-    const newProduct = data.addProduct(product);
-    context.res.status(201).json(newProduct);
-  } catch (error) {
-    context.res.status(500).send(error);
-  }
+    let connectionString = process.env.StorageConnectionString;
+    let tableService = azure.createTableService(connectionString);
+    tableService.insertOrReplaceEntity('pages', page,(error, result, response) => {
+        let res = {
+            statusCode: error ? 400 : 204,
+            body: null
+        };
+        context.done(null, res);
+    });
+
 };
