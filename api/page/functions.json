@@ -1,0 +1,31 @@
+{
+    "bindings": [
+      {
+        "authLevel": "anonymous",
+        "name": "req",
+        "type": "httpTrigger",
+        "direction": "in",
+        "methods": [
+          "get",
+          "post"
+        ],
+        "route":"page/{partitionKeyValue}/{id}"
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "out"
+      },
+      {
+        "type": "cosmosDB",
+        "name": "page",
+        "databaseName": "lifehub",
+        "collectionName": "pages",
+        "connection": "CosmosDBConnection",
+        "direction": "in",
+        "Id": "{id}",
+        "PartitionKey": "{partitionKeyValue}"
+      }
+    ],
+    "disabled": false
+  }
