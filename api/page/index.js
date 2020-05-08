@@ -1,4 +1,4 @@
-module.exports = function (context, req, toDoItem) {
+module.exports = function (context, req, page) {
     context.log('JavaScript queue trigger function processed work item');
     if (!page)
     {
