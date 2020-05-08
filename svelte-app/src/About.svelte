@@ -3,8 +3,7 @@
 </script>
 
 <Guard>
-  <slot name="authenticated">
-    <div class="content-container">
+    <div slot="authenticated" class="content-container">
       <div class="content-title-group not-found">
         <h2 class="title">Product Wish List</h2>
         <p>
@@ -22,6 +21,5 @@
         </ul>
       </div>
     </div>
-  </slot>
-  <slot name="noauth">Nope.</slot>
+<div slot="noauth">Nope.</div>
 </Guard>
