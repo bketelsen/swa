@@ -7,8 +7,8 @@ module.exports = async function (context, req) {
   var query = new azure.TableQuery();
   tableService.queryEntities('pages', query, null, function (error, result) {
     if (!error) {
-      var pages = result.entries;
-      context.res.status(200).json(pages);
+      var pages = result.entries.length;
+      context.res.status(200).json({pages});
     } else {
 
       context.res.status(400).json(error);
