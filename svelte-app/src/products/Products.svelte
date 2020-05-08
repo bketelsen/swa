@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { ListHeader, Modal } from '../components';
+  import { Guard, ListHeader, Modal } from '../components';
   import ProductList from './ProductList.svelte';
   import ProductDetail from './ProductDetail.svelte';
   import {
@@ -70,7 +70,9 @@
   }
 </script>
 
-<div class="content-container">
+<Guard>
+
+<div slot="authenticated" class="content-container">
   <ListHeader
     {title}
     {routePath}
@@ -100,3 +102,4 @@
     on:handleNo={closeModal}
     on:handleYes={deleteProduct} />
 </div>
+</Guard>
